@@ -14,28 +14,28 @@ public class BunTest {
     Random random = new Random();
     String name = faker.food().toString();
     Float price = random.nextFloat();
-
-    //ACT
     //Создать объект Bun
     Bun bun = new Bun(name, price);
 
     @Test
-    public void testBunNameIs() {
+    public void testBunGetName() {
+        //ACT
         //Вызвать тестируемый метод
         String actual = bun.getName();
         String expected = name;
         //ASSERT
         //Проверить, что метод вызван с заданными параметрами
-        assertEquals("Ошибка в работе метода bun.getName()", expected, actual);
+        assertEquals("Ошибка в работе метода bun.getName(). Имя не соответсвует ожидаемому.", expected, actual);
     }
 
     @Test
-    public void testBunPriceIs() {
+    public void testBunGetPrice() {
+        //ACT
         //Вызвать тестируемый метод
         float actual = bun.getPrice();
         float expected = price;
         //ASSERT
         //Проверить, что метод вызван с заданными параметрами
-        assertEquals("Ошибка в работе метода bun.getPrice()", expected, actual, 0);
+        assertEquals("Ошибка в работе метода bun.getPrice(). Цена не соответсвует ожидаемой.", expected, actual, 0);
     }
 }

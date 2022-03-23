@@ -23,7 +23,7 @@ public class BurgerTest {
     Bun testBun = new Bun("testBun", 200);
 
     @Test
-    public void testSetBun() {
+    public void testBurgerSetBun() {
         //ACT
         //Выбрать булочку
         burger.setBuns(bun);
@@ -33,7 +33,7 @@ public class BurgerTest {
     }
 
     @Test
-    public void testAddIngredient() {
+    public void testBurgerAddIngredient() {
         //ACT
         //Добавить ингредиент
         burger.addIngredient(ingredient);
@@ -43,19 +43,19 @@ public class BurgerTest {
     }
 
     @Test
-    public void testRemoveIngredient() {
+    public void testBurgerRemoveIngredient() {
         //ACT
         //Добавить ингредиент
         burger.addIngredient(ingredient);
         //Удалить ингредиент
         burger.removeIngredient(0);
         //ASSERT
-        //Проверить, что ингридиентов в бургере нет (List<Ingredient> пустой)
+        //Проверить, что ингридиентов в бургере нет
         assertTrue("Ошибка в работе метода burger.removeIngredient(). Ингредиент не удален.", burger.ingredients.isEmpty());
     }
 
     @Test
-    public void testMoveIngredient() {
+    public void testBurgerMoveIngredient() {
         //ACT
         //Добавить мок-ингредиент
         burger.addIngredient(ingredient);
@@ -69,7 +69,7 @@ public class BurgerTest {
     }
 
     @Test
-    public void testGetPrice() {
+    public void testBurgerGetPrice() {
         //ACT
         //Добавить булочку
         burger.setBuns(testBun);
@@ -84,7 +84,7 @@ public class BurgerTest {
     }
 
     @Test
-    public void testGetReceipt() {
+    public void testBurgerGetReceipt() {
         //ACT
         //Добавить булочку
         burger.setBuns(testBun);
