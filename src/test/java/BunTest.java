@@ -20,7 +20,7 @@ public class BunTest {
     Bun bun = new Bun(name, price);
 
     @Test
-    public void bunNameIs() {
+    public void testBunNameIs() {
         //Вызвать тестируемый метод
         String actual = bun.getName();
         String expected = name;
@@ -30,7 +30,7 @@ public class BunTest {
     }
 
     @Test
-    public void bunPriceIs() {
+    public void testBunPriceIs() {
         //Вызвать тестируемый метод
         float actual = bun.getPrice();
         float expected = price;
