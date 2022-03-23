@@ -4,8 +4,6 @@ import praktikum.Bun;
 import praktikum.Burger;
 import praktikum.Ingredient;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 import static praktikum.IngredientType.SAUCE;
 
@@ -52,8 +50,8 @@ public class BurgerTest {
         //Удалить ингредиент
         burger.removeIngredient(0);
         //ASSERT
-        //Проверить, что ингридиентов в бургере нет
-        assertNull("Ошибка в работе метода burger.removeIngredient(). Ингредиент не удален.", burger.ingredients);
+        //Проверить, что ингридиентов в бургере нет (List<Ingredient> пустой)
+        assertTrue("Ошибка в работе метода burger.removeIngredient(). Ингредиент не удален.", burger.ingredients.isEmpty());
     }
 
     @Test
@@ -69,8 +67,9 @@ public class BurgerTest {
         //Проверить, что на позиции 0 теперь находится тестовый ингридиент
         assertEquals("Ошибка в работе метода burger.moveIngredient(). Ингридиент не перемещен.", "test", testIngredient.name);
     }
+
     @Test
-    public void testGetPrice(){
+    public void testGetPrice() {
         //ACT
         //Добавить булочку
         burger.setBuns(testBun);
@@ -78,9 +77,31 @@ public class BurgerTest {
         burger.addIngredient(testIngredient);
         //Получить цену бургера
         Float actualPrice = burger.getPrice();
-        Float expectedPrice = testBun.price*2+testIngredient.price;
+        Float expectedPrice = testBun.price * 2 + testIngredient.price;
         //ASSERT
         //
-        assertEquals("Ошибка в работе метода getPrice. Полученная цена не совпадает с ожидаемой", expectedPrice, actualPrice);
+        assertEquals("Ошибка в работе метода burger.getPrice(). Полученная цена не совпадает с ожидаемой", expectedPrice, actualPrice);
+    }
+
+    @Test
+    public void testGetReceipt() {
+        //ACT
+        //Добавить булочку
+        burger.setBuns(testBun);
+        //Добавить ингредиент
+        burger.addIngredient(testIngredient);
+        //Получить чек
+        String actualReceipt = burger.getReceipt();
+        String finalPrice = String.format("%.6f", burger.getPrice());
+
+        String expectedReceipt = String.format(
+                        "(==== %s ====)%n= %s %s =%n(==== %s ====)%n%nPrice: %s%n",
+                        testBun.name,
+                        testIngredient.type.toString().toLowerCase(),
+                        testIngredient.name,
+                        testBun.name,
+                        finalPrice);
+        //ASSERT
+       assertEquals("Ошибка в работе метода burger.getReceipt(). Рецепт не соответсвует шаблону.", expectedReceipt, actualReceipt);
     }
 }
