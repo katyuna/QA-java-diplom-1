@@ -1,8 +1,6 @@
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockito.Mock;
-import org.mockito.internal.matchers.Null;
 import praktikum.IngredientType;
 
 import static org.junit.Assert.assertEquals;
@@ -10,30 +8,32 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class IngredientTypeTest {
     //ARRANGE
-    //Тип ингридиента
+    //Тип ингридиента из перечисления
     private final IngredientType ingredientType;
-    //Порядковый номер ингредиента в перечислении
-    private final int expectedIngredientNumber;
+    //Ожидаемый тип ингридиента
+    private final String expectedIngredientType;
     //Конструктор
-    public IngredientTypeTest(IngredientType ingredientType, int expectedIngredientNumber) {
+    public IngredientTypeTest(String expectedIngredientName, IngredientType ingredientType) {
         this.ingredientType = ingredientType;
-        this.expectedIngredientNumber = expectedIngredientNumber;
+        this.expectedIngredientType = expectedIngredientName;
     }
-    //Параметризация: передаем ингридиент -> получаем номер ингредиента в перечислении
+
+    //Параметризация: передаем строку - тип ингредиента
     @Parameterized.Parameters
     public static Object[][] getSumData() {
         return new Object[][]{
-                {IngredientType.SAUCE, 0},
-                {IngredientType.FILLING, 1}
+                {"SAUCE", IngredientType.SAUCE},
+                {"FILLING", IngredientType.FILLING}
         };
     }
 
     @Test
     public void testIngredientType() {
         //ACT
-        int actualIngredientNumber = ingredientType.ordinal();
+        //Получить тип ингридиента из перечисления в виде строки
+        String actualIngredientName = ingredientType.name();
         //ASSERT
-        assertEquals("Не удалось получить ингридиент из перечисления.", expectedIngredientNumber, actualIngredientNumber);
+        assertEquals("Не удалось получить ингридиент из перечисления.", expectedIngredientType, actualIngredientName.toString());
         }
 }
 
